@@ -2,3 +2,5 @@ numpy
 pandas
 pyttsx3
 scikit-learn
+streamlit
+matplotlib
