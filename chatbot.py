@@ -9,8 +9,8 @@ from sklearn.model_selection import train_test_split
 from sklearn.svm import SVC
 
 # Load datasets
-training = pd.read_csv('Medical-chatbot/Training.csv')
-testing = pd.read_csv('Medical-chatbot/Testing.csv')
+training = pd.read_csv('./Training.csv')
+testing = pd.read_csv('./Testing.csv')
 cols = training.columns[:-1]
 x = training[cols]
 y = training['prognosis']
@@ -38,7 +38,7 @@ def load_dictionaries():
     
     # Load symptom descriptions
     try:
-        with open('Medical-chatbot/symptom_Description.csv', mode='r') as csv_file:
+        with open('./symptom_Description.csv', mode='r') as csv_file:
             description_list = {row[0]: row[1] for row in csv.reader(csv_file)}
     except FileNotFoundError:
         print("Error: symptom_Description.csv not found.")
@@ -47,7 +47,7 @@ def load_dictionaries():
     
     # Load symptom precautions
     try:
-        with open('Medical-chatbot/symptom_precaution.csv', mode='r') as csv_file:
+        with open('./symptom_precaution.csv', mode='r') as csv_file:
             precautionDictionary = {row[0]: row[1:] for row in csv.reader(csv_file)}
     except FileNotFoundError:
         print("Error: symptom_precaution.csv not found.")
@@ -56,7 +56,7 @@ def load_dictionaries():
     
     # Load symptom severity
     try:
-        with open('Medical-chatbot/Symptom_severity.csv', mode='r') as csv_file:
+        with open('./Symptom_severity.csv', mode='r') as csv_file:
             severityDictionary = {row[0]: int(row[1]) for row in csv.reader(csv_file)}
     except FileNotFoundError:
         print("Error: Symptom_severity.csv not found.")
