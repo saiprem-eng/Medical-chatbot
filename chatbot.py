@@ -256,7 +256,7 @@ if name:
                     predicted_disease = predict_disease(selected_symptoms)
                     description = get_description(predicted_disease)
                     precautions = get_precautions(predicted_disease)
-                    treatment_info = get_treatments(predicted_disease
+                    treatment_info = get_treatments(predicted_disease)
                     
                     st.subheader(f"{name}, you may have: {predicted_disease}")
                     st.write(description)
