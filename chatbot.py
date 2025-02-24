@@ -151,7 +151,7 @@ if name:
                     
                     # Call the plot_disease_prevalence function
                     st.subheader("Relevant Treatments : ")
-                    st.write(treatments)
+                    st.write(treatment_info)
                     
                     
              else:
