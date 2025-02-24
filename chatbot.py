@@ -83,17 +83,18 @@ def get_description(disease):
 
 # Streamlit UI
 st.title("HealthCare ChatBot")
-st.write("This chatbot predicts diseases based on symptoms you provide.")
+st.write("This chatbot uses general machine learning algorithms and predicts diseases based on symptoms users provide.")
 
 # Ask for name
 name = st.text_input("Enter your name:")
 
 # Ask for number of days
 if name:
-    days_sick = st.number_input("How many days have you been experiencing symptoms?", min_value=1, step=1)
-    
     # Ask for symptoms
     selected_symptoms = st.multiselect("Select your symptoms:", cols)
+
+    #Ask for no of days sick
+    days_sick = st.number_input("How many days have you been experiencing symptoms?", min_value=1, step=1)
     
     # Predict button
     test_button = st.button("Predict Disease")
@@ -109,6 +110,7 @@ if name:
             
             st.subheader("Precautions:")
             for i, precaution in enumerate(precautions, 1):
-                st.write(f"{i}. {precaution}")
+                if precaution:
+                    st.write(f"{i}. {precaution}")
         else:
             st.warning("Please select at least one symptom.")
