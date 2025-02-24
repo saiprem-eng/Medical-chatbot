@@ -150,6 +150,9 @@ if name:
                             st.write(f"{i}. {precaution}")
                     
                     # Call the plot_disease_prevalence function
+                    st.subheader("Relevant Treatments : ")
+                    st.write(treatments)
+                    
                     
              else:
                     st.warning("Please select at least one symptom.")
