@@ -207,6 +207,31 @@ def get_treatments(disease):
     }
     return treatments.get(disease, 'No treatment information available.')
 
+
+def plot_disease_prevalence(selected_symptoms):
+    # Sample data: Replace this with your actual data logic
+    disease_counts = {
+        'Flu': 20,
+        'Cold': 15,
+        'Allergy': 10,
+        'COVID-19': 5,
+    }
+    
+    # Create a bar chart of disease prevalence
+    diseases = list(disease_counts.keys())
+    counts = list(disease_counts.values())
+    
+    plt.figure(figsize=(10, 5))
+    plt.bar(diseases, counts, color='blue')
+    plt.title('Disease Prevalence Based on Symptoms')
+    plt.xlabel('Diseases')
+    plt.ylabel('Number of Cases')
+    plt.xticks(rotation=45)
+    
+    # Display the plot in Streamlit
+    st.pyplot(plt)
+    plt.close()  # Close the plot to avoid displaying it twice
+
 # Streamlit UI
 st.title("HealthCare ChatBot")
 st.write("This chatbot uses general machine learning algorithms and predicts diseases based on symptoms users provide.")
@@ -230,26 +255,48 @@ if name:
 
     if test_button:
         with st.spinner("Predicting..."):
-            if selected_symptoms:
-                predicted_disease = predict_disease(selected_symptoms)
-                description = get_description(predicted_disease)
-                precautions = get_precautions(predicted_disease)
-                treatment_info = get_treatments(predicted_disease)
+            # if selected_symptoms:
+            #     predicted_disease = predict_disease(selected_symptoms)
+            #     description = get_description(predicted_disease)
+            #     precautions = get_precautions(predicted_disease)
+            #     treatment_info = get_treatments(predicted_disease)
 
-                st.success(f"{name}, you may have: {predicted_disease}")
-                st.write(description)
-                st.write(f"**Suggested Treatment:** {treatment_info}")
+            #     st.success(f"{name}, you may have: {predicted_disease}")
+            #     st.write(description)
+            #     st.write(f"**Suggested Treatment:** {treatment_info}")
 
-                st.subheader("Precautions:")
-                for i, precaution in enumerate(precautions, 1):
-                    if precaution:
-                        st.write(f"{i}. {precaution}")
+            #     st.subheader("Precautions:")
+            #     for i, precaution in enumerate(precautions, 1):
+            #         if precaution:
+            #             st.write(f"{i}. {precaution}")
 
-                # Optionally, you can plot disease prevalence (sample data for illustration)
-                plot_disease_prevalence(selected_symptoms)
+            #     # Optionally, you can plot disease prevalence (sample data for illustration)
+            #     plot_disease_prevalence(selected_symptoms)
 
-            else:
-                st.warning("Please select at least one symptom.")
+            # else:
+            #     st.warning("Please select at least one symptom.")
+
+             if selected_symptoms:
+                    predicted_disease = predict_disease(selected_symptoms)
+                    description = get_description(predicted_disease)
+                    precautions = get_precautions(predicted_disease)
+                    
+                    st.subheader(f"{name}, you may have: {predicted_disease}")
+                    st.write(description)
+                    
+                    st.subheader("Precautions:")
+                    for i, precaution in enumerate(precautions, 1):
+                        if precaution:
+                            st.write(f"{i}. {precaution}")
+                    
+                    # Call the plot_disease_prevalence function
+                    plot_disease_prevalence(selected_symptoms)
+                else:
+                    st.warning("Please select at least one symptom.")
+
+
+   
+   
 
 # Sidebar for additional information
 st.sidebar.header("Additional Information")
