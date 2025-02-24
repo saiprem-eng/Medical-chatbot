@@ -146,7 +146,7 @@ def sec_predict(symptoms_exp):
     symptoms_dict = {symptom: index for index, symptom in enumerate(X)}
     input_vector = np.zeros(len(symptoms_dict))
     for item in symptoms_exp:
-    input_vector[[symptoms_dict[item]]] = 1
+        input_vector[[symptoms_dict[item]]] = 1
 
     return rf_clf.predict([input_vector])
 
