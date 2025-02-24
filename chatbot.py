@@ -291,7 +291,7 @@ if name:
                     
                     # Call the plot_disease_prevalence function
                     plot_disease_prevalence(selected_symptoms)
-                else:
+             else:
                     st.warning("Please select at least one symptom.")
 
 
