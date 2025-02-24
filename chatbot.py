@@ -82,13 +82,13 @@ def get_precautions(disease):
 def get_description(disease):
     return description_list.get(disease, 'No description available')
 
-def get_treatments(disease):
-    treatments = {
-        'Disease A': "Treatment A",
-        'Disease B': "Treatment B",
-        'Disease C': "Treatment C",
-    }
-    return treatments.get(disease, 'No treatment information available.')
+# def get_treatments(disease):
+#     treatments = {
+#         'Disease A': "Treatment A",
+#         'Disease B': "Treatment B",
+#         'Disease C': "Treatment C",
+#     }
+#     return treatments.get(disease, 'No treatment information available.')
 
 
 # Streamlit UI
@@ -114,27 +114,6 @@ if name:
 
     if test_button:
         with st.spinner("Predicting..."):
-            # if selected_symptoms:
-            #     predicted_disease = predict_disease(selected_symptoms)
-            #     description = get_description(predicted_disease)
-            #     precautions = get_precautions(predicted_disease)
-            #     )
-
-            #     st.success(f"{name}, you may have: {predicted_disease}")
-            #     st.write(description)
-            #     st.write(f"**Suggested Treatment:** {treatment_info}")
-
-            #     st.subheader("Precautions:")
-            #     for i, precaution in enumerate(precautions, 1):
-            #         if precaution:
-            #             st.write(f"{i}. {precaution}")
-
-            #     # Optionally, you can plot disease prevalence (sample data for illustration)
-            #     plot_disease_prevalence(selected_symptoms)
-
-            # else:
-            #     st.warning("Please select at least one symptom.")
-
              if selected_symptoms:
                     predicted_disease = predict_disease(selected_symptoms)
                     description = get_description(predicted_disease)
@@ -144,14 +123,14 @@ if name:
                     st.subheader(f"{name}, you may have: {predicted_disease}")
                     st.write(description)
                     
-                    st.subheader("Precautions:")
+                    st.subheader("Treatments:")
                     for i, precaution in enumerate(precautions, 1):
                         if precaution:
                             st.write(f"{i}. {precaution}")
                     
-                    # Call the plot_disease_prevalence function
-                    st.subheader("Relevant Treatments : ")
-                    st.write(treatment_info)
+                    # Call the treatments function
+                    # st.subheader("Relevant Treatments : ")
+                    # st.write(treatment_info)
                     
                     
              else:
