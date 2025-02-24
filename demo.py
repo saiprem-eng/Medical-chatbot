@@ -45,9 +45,11 @@ load_dictionaries()
 def predict_disease(symptoms):
     input_vector = np.zeros(len(cols))
     for symptom in symptoms:
-        if symptom in cols:
+        if symptom in cols:  # Ensure symptom exists in dataset
             input_vector[cols.get_loc(symptom)] = 1
-    return le.inverse_transform(clf.predict([input_vector]))[0]
+    input_vector = input_vector.reshape(1, -1)  # Ensure correct shape for prediction
+    return le.inverse_transform(clf.predict(input_vector))[0]
+
 
 def get_precautions(disease):
     return precautionDictionary.get(disease, [])
