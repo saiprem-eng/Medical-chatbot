@@ -97,9 +97,11 @@ h1, h2, h3 {
 
 .stSlider {
     color: #4CAF50; /* Green slider color */
+    border-color: #BDBDBD; /* Light gray for slider track */
 }
 </style>
 """, unsafe_allow_html=True)
+
 
 
 st.title("🩺 HealthCare ChatBot")
