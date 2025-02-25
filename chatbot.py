@@ -64,7 +64,7 @@ st.set_page_config(page_title="HealthCare ChatBot", layout="centered")
 st.markdown("""
 <style>
 body {
-    background-color: #F3F8FF; /* Light blue background */
+    background-color: #f6b6a8 ; /*  background */
     font-family: 'Arial', sans-serif; /* Clean font style */
 }
 
@@ -73,7 +73,6 @@ h1, h2, h3 {
 }
 
 .stButton {
-    background-color: #1E88E5; /* Bright blue button */
     color: white; /* White text */
     border-radius: 10px; /* More rounded corners */
     height: 50px; /* Increased button height */
@@ -81,19 +80,13 @@ h1, h2, h3 {
     transition: background-color 0.3s; /* Smooth transition */
 }
 
-.stButton:hover {
-    background-color: #1976D2; /* Darker blue on hover */
-}
 
 .stTextInput, .stSelectbox, .stMultiselect {
     border: 2px solid #BDBDBD; /* Light gray border */
     border-radius: 5px; /* Rounded corners for input fields */
-    padding: 10px; /* Padding for input fields */
 }
 
-.stTextInput:focus, .stSelectbox:focus, .stMultiselect:focus {
-    border-color: #1E88E5; /* Blue border on focus */
-}
+
 
 .stSlider {
     color: #4CAF50; /* Green slider color */
