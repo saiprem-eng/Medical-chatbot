@@ -61,42 +61,7 @@ def get_description(disease):
 
 # Streamlit UI
 st.set_page_config(page_title="HealthCare ChatBot", layout="centered")
-st.markdown("""
-<style>
-body {
-    background-color: #f6b6a8 ; /*  background */
-    font-family: 'Arial', sans-serif; /* Clean font style */
-}
-
-h1, h2, h3 {
-    color: #2E7D32; /* Dark green for headings */
-}
-
-.stButton {
-    color: white; /* White text */
-    border-radius: 10px; /* More rounded corners */
-    height: 50px; /* Increased button height */
-    font-size: 18px; /* Larger font size */
-    transition: background-color 0.3s; /* Smooth transition */
-}
-
-
-.stTextInput, .stSelectbox, .stMultiselect {
-    border: 2px solid #BDBDBD; /* Light gray border */
-    border-radius: 5px; /* Rounded corners for input fields */
-}
-
-
-
-.stSlider {
-    color: #4CAF50; /* Green slider color */
-    border-color: #BDBDBD; /* Light gray for slider track */
-}
-</style>
-""", unsafe_allow_html=True)
-
-
-
+st.markdown("<style>body{background-color: #f0f0f5;}</style>", unsafe_allow_html=True)
 st.title("🩺 HealthCare ChatBot")
 st.image("Healthcare-chatbot-hero-1024x780-1.webp", width=150)  # Add your medical-themed logo here
 
@@ -125,8 +90,7 @@ if st.button("Predict Disease"):
         st.write(description)
         st.subheader("Treatments:")
         for i, precaution in enumerate(precautions, 1):
-            if precaution:
-                st.write(f"{i}. {precaution}")
+            st.write(f"{i}. {precaution}")
 
         # Save chat history
         st.session_state.chat_history.append(f"{name} selected: {selected_symptoms} - Predicted: {predicted_disease}")
