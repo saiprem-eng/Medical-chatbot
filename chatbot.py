@@ -79,28 +79,24 @@ if name:
     days_sick = st.number_input("How many days have you been experiencing symptoms?", min_value=1, step=1)
     severity = st.slider("Rate the severity of your symptoms:", 1, 10, 5)
 
-# Initialize predicted_disease
-predicted_disease = None
-
-# Predict button
 if st.button("Predict Disease"):
     if selected_symptoms:
         predicted_disease = predict_disease(selected_symptoms)
         description = get_description(predicted_disease)
         precautions = get_precautions(predicted_disease)
 
+        st.session_state.predicted_disease = predicted_disease  # Store in session state
         st.subheader(f"{name}, you may have: **{predicted_disease}**")
         st.write(description)
         st.subheader("Treatments:")
         for i, precaution in enumerate(precautions, 1):
-            if precautions:
-                st.write(f"{i}. {precaution}")
+            st.write(f"{i}. {precaution}")
 
         # Save chat history
         st.session_state.chat_history.append(f"{name} selected: {selected_symptoms} - Predicted: {predicted_disease}")
     else:
         st.warning("Please select at least one symptom.")
-
+        
 # Display chat history
 if st.button("Show Chat History"):
     for message in st.session_state.chat_history:
@@ -108,7 +104,8 @@ if st.button("Show Chat History"):
 
 # Option to download report
 if st.button("Download Report"):
-    if predicted_disease:  # Check if predicted_disease is assigned
+    if 'predicted_disease' in st.session_state:  # Check if predicted_disease is stored in session state
+        predicted_disease = st.session_state.predicted_disease
         report_data = f"User: {name}\nSymptoms: {selected_symptoms}\nPredicted Disease: {predicted_disease}\n"
         st.download_button("Download Report", report_data, "report.txt")
     else:
