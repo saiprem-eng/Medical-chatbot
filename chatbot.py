@@ -104,10 +104,34 @@ if st.button("Show Chat History"):
     for message in st.session_state.chat_history:
         st.write(message)
 
+# Initialize predicted_disease
+predicted_disease = None
+
+# Predict button
+if st.button("Predict Disease"):
+    if selected_symptoms:
+        predicted_disease = predict_disease(selected_symptoms)
+        description = get_description(predicted_disease)
+        precautions = get_precautions(predicted_disease)
+
+        st.subheader(f"{name}, you may have: **{predicted_disease}**")
+        st.write(description)
+        st.subheader("Precautions:")
+        for i, precaution in enumerate(precautions, 1):
+            st.write(f"{i}. {precaution}")
+
+        # Save chat history
+        st.session_state.chat_history.append(f"{name} selected: {selected_symptoms} - Predicted: {predicted_disease}")
+    else:
+        st.warning("Please select at least one symptom.")
+
 # Option to download report
 if st.button("Download Report"):
-    report_data = f"User: {name}\nSymptoms: {selected_symptoms}\nPredicted Disease: {predicted_disease}\n"
-    st.download_button("Download Report", report_data, "report.txt")
+    if predicted_disease:  # Check if predicted_disease is assigned
+        report_data = f"User: {name}\nSymptoms: {selected_symptoms}\nPredicted Disease: {predicted_disease}\n"
+        st.download_button("Download Report", report_data, "report.txt")
+    else:
+        st.warning("Please predict the disease before downloading the report.")
 
 # Sidebar for additional information
 st.sidebar.header("Additional Information")
