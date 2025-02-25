@@ -63,7 +63,7 @@ def get_description(disease):
 st.set_page_config(page_title="HealthCare ChatBot", layout="centered")
 st.markdown("<style>body{background-color: #f0f0f5;}</style>", unsafe_allow_html=True)
 st.title("🩺 HealthCare ChatBot")
-st.image("https://Healthcare-chatbot-hero-1024x780-1.webp", width=150)  # Add your medical-themed logo here
+st.image("Healthcare-chatbot-hero-1024x780-1.webp", width=150)  # Add your medical-themed logo here
 
 # Session state for chat history
 if 'chat_history' not in st.session_state:
@@ -103,12 +103,12 @@ if st.button("Show Chat History"):
         st.write(message)
 
 # Option to download report
-if st.button("Download Report"):
-    if 'predicted_disease' in st.session_state:  # Check if predicted_disease is stored in session state
-        predicted_disease = st.session_state.predicted_disease
-        report_data = f"User: {name}\nSymptoms: {selected_symptoms}\nPredicted Disease: {predicted_disease}\n"
-    else:
-        st.warning("Please predict the disease before downloading the report.")
+if 'predicted_disease' in st.session_state:  # Check if predicted_disease is stored in session state
+    predicted_disease = st.session_state.predicted_disease
+    report_data = f"User: {name}\nSymptoms: {selected_symptoms}\nPredicted Disease: {predicted_disease}\n"
+    st.download_button("Download Report", report_data, "report.txt", mime="text/plain")
+else:
+    st.warning("Please predict the disease before downloading the report.")
 
 # Sidebar for additional information
 st.sidebar.header("Additional Information")
