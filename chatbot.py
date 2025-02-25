@@ -1,5 +1,3 @@
-
-
 import streamlit as st
 import pandas as pd
 import numpy as np
@@ -65,7 +63,7 @@ def get_description(disease):
 st.set_page_config(page_title="HealthCare ChatBot", layout="centered")
 st.markdown("<style>body{background-color: #f0f0f5;}</style>", unsafe_allow_html=True)
 st.title("🩺 HealthCare ChatBot")
-st.image("Healthcare-chatbot-hero-1024x780-1.webp", width=150)  # Add your medical-themed logo here
+st.image("https://your-image-url.com/Healthcare-chatbot-hero-1024x780-1.webp", width=150)  # Add your medical-themed logo here
 
 # Session state for chat history
 if 'chat_history' not in st.session_state:
@@ -81,19 +79,23 @@ if name:
     days_sick = st.number_input("How many days have you been experiencing symptoms?", min_value=1, step=1)
     severity = st.slider("Rate the severity of your symptoms:", 1, 10, 5)
 
+    # Initialize predicted_disease
+    predicted_disease = None
+
     # Predict button
     if st.button("Predict Disease"):
         if selected_symptoms:
             predicted_disease = predict_disease(selected_symptoms)
             description = get_description(predicted_disease)
             precautions = get_precautions(predicted_disease)
-            
+
             st.subheader(f"{name}, you may have: **{predicted_disease}**")
             st.write(description)
-            st.subheader("Precautions:")
+            st.subheader("Treatments:")
             for i, precaution in enumerate(precautions, 1):
-                st.write(f"{i}. {precaution}")
-            
+                if precautions:
+                    st.write(f"{i}. {precaution}")
+
             # Save chat history
             st.session_state.chat_history.append(f"{name} selected: {selected_symptoms} - Predicted: {predicted_disease}")
         else:
@@ -103,27 +105,6 @@ if name:
 if st.button("Show Chat History"):
     for message in st.session_state.chat_history:
         st.write(message)
-
-# Initialize predicted_disease
-predicted_disease = None
-
-# Predict button
-if st.button("Predict Disease"):
-    if selected_symptoms:
-        predicted_disease = predict_disease(selected_symptoms)
-        description = get_description(predicted_disease)
-        precautions = get_precautions(predicted_disease)
-
-        st.subheader(f"{name}, you may have: **{predicted_disease}**")
-        st.write(description)
-        st.subheader("Precautions:")
-        for i, precaution in enumerate(precautions, 1):
-            st.write(f"{i}. {precaution}")
-
-        # Save chat history
-        st.session_state.chat_history.append(f"{name} selected: {selected_symptoms} - Predicted: {predicted_disease}")
-    else:
-        st.warning("Please select at least one symptom.")
 
 # Option to download report
 if st.button("Download Report"):
@@ -138,4 +119,3 @@ st.sidebar.header("Additional Information")
 if st.sidebar.checkbox("Show FAQs"):
     st.sidebar.write("1. How does the chatbot work?")
     st.sidebar.write("2. What data is used for predictions?")
-
