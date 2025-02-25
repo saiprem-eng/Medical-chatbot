@@ -107,7 +107,6 @@ if st.button("Download Report"):
     if 'predicted_disease' in st.session_state:  # Check if predicted_disease is stored in session state
         predicted_disease = st.session_state.predicted_disease
         report_data = f"User: {name}\nSymptoms: {selected_symptoms}\nPredicted Disease: {predicted_disease}\n"
-        st.download_button("Download Report", report_data, "report.txt")
     else:
         st.warning("Please predict the disease before downloading the report.")
 
